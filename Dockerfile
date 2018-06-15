@@ -1,4 +1,4 @@
-FROM node:latest
+FROM hypriot/rpi-node:latest
 
 # ENV NODE_ENV production - Temporary fix until "https://github.com/MichMich/MagicMirror/pull/1250" is merged into master.
 
