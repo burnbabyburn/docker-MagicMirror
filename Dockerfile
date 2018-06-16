@@ -4,15 +4,19 @@ FROM hypriot/rpi-node:latest
 
 WORKDIR /opt/magic_mirror
 
-RUN git clone https://github.com/MichMich/MagicMirror.git .
-RUN git clone https://github.com/raywo/MMM-PublicTransportHafas.git ./config/MMM-PublicTransportHafas
-RUN git clone https://github.com/fewieden/MMM-Fuel.git ./config/MMM-Fuel
-RUN git clone https://github.com/edward-shen/MMM-pages.git ./config/MMM-pages
-RUN git clone https://github.com/edward-shen/MMM-page-indicator.git ./config/MMM-page-indicator
-RUN git clone https://github.com/paviro/MMM-FRITZ-Box-Callmonitor.git ./config/MMM-FRITZ-Box-Callmonitor
+RUN git clone https://github.com/MichMich/MagicMirror.git . \
+	&& git clone https://github.com/raywo/MMM-PublicTransportHafas.git ./config/MMM-PublicTransportHafas \
+	&& git clone https://github.com/fewieden/MMM-Fuel.git ./config/MMM-Fuel \
+	&& git clone https://github.com/edward-shen/MMM-pages.git ./config/MMM-pages \
+	&& git clone https://github.com/edward-shen/MMM-page-indicator.git ./config/MMM-page-indicator \
+	&& git clone https://github.com/paviro/MMM-FRITZ-Box-Callmonitor.git ./config/MMM-FRITZ-Box-Callmonitor
 
 RUN cp -R config /opt/default_config
-RUN npm install --unsafe-perm --silent
+
+RUN npm install --unsafe-perm \
+	&& npm install ./config/MMM-FRITZ-Box-Callmonitor \
+	&& npm install --productive ./config/MMM-Fuel \
+	&& npm install ./config/MMM-PublicTransportHafas
 
 COPY docker-entrypoint.sh /opt
 RUN apt-get update \
@@ -22,5 +26,6 @@ RUN apt-get update \
   && pip install fritzconnection
 
 EXPOSE 80
+EXPOSE 1012
 CMD ["node serveronly"]
 ENTRYPOINT ["/opt/docker-entrypoint.sh"]
