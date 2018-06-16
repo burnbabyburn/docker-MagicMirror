@@ -13,10 +13,10 @@ RUN git clone https://github.com/MichMich/MagicMirror.git . \
 
 RUN cp -R config /opt/default_config
 
-RUN npm install --unsafe-perm \
-	&& npm install ./config/MMM-FRITZ-Box-Callmonitor \
-	&& npm install --productive ./config/MMM-Fuel \
-	&& npm install ./config/MMM-PublicTransportHafas
+RUN npm install --unsafe-perm
+RUN npm install ./config/MMM-FRITZ-Box-Callmonitor
+RUN npm install --productive ./config/MMM-Fuel
+RUN npm install ./config/MMM-PublicTransportHafas
 
 COPY docker-entrypoint.sh /opt
 RUN apt-get update \
