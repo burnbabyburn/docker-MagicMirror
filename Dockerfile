@@ -16,6 +16,6 @@ RUN apt-get update \
   && dos2unix /opt/docker-entrypoint.sh \
   && chmod +x /opt/docker-entrypoint.sh
 
-EXPOSE 8080
+EXPOSE 80
 CMD ["node serveronly"]
 ENTRYPOINT ["/opt/docker-entrypoint.sh"]
