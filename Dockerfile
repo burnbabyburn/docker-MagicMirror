@@ -5,11 +5,11 @@ FROM hypriot/rpi-node:latest
 WORKDIR /opt/magic_mirror
 
 RUN git clone https://github.com/MichMich/MagicMirror.git .
-RUN git clone https://github.com/raywo/MMM-PublicTransportHafas.git ./config/
-RUN git clone https://github.com/fewieden/MMM-Fuel.git ./config/
-RUN git clone https://github.com/edward-shen/MMM-pages.git ./config/
-RUN git clone https://github.com/edward-shen/MMM-page-indicator.git ./config/
-RUN git clone https://github.com/paviro/MMM-FRITZ-Box-Callmonitor.git ./config/
+RUN git clone https://github.com/raywo/MMM-PublicTransportHafas.git ./config/MMM-PublicTransportHafas
+RUN git clone https://github.com/fewieden/MMM-Fuel.git ./config/MMM-Fuel
+RUN git clone https://github.com/edward-shen/MMM-pages.git ./config/MMM-pages
+RUN git clone https://github.com/edward-shen/MMM-page-indicator.git ./config/MMM-page-indicator
+RUN git clone https://github.com/paviro/MMM-FRITZ-Box-Callmonitor.git ./config/MMM-FRITZ-Box-Callmonitor
 
 RUN cp -R config /opt/default_config
 RUN npm install --unsafe-perm --silent
