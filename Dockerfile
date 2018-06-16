@@ -5,16 +5,21 @@ FROM hypriot/rpi-node:latest
 WORKDIR /opt/magic_mirror
 
 RUN git clone https://github.com/MichMich/MagicMirror.git .
+RUN git clone https://github.com/raywo/MMM-PublicTransportHafas.git ./config/
+RUN git clone https://github.com/fewieden/MMM-Fuel.git ./config/
+RUN git clone https://github.com/edward-shen/MMM-pages.git ./config/
+RUN git clone https://github.com/edward-shen/MMM-page-indicator.git ./config/
+RUN git clone https://github.com/paviro/MMM-FRITZ-Box-Callmonitor.git ./config/
 
-RUN cp -R modules /opt/default_modules
 RUN cp -R config /opt/default_config
 RUN npm install --unsafe-perm --silent
 
 COPY docker-entrypoint.sh /opt
 RUN apt-get update \
-  && apt-get -qy install dos2unix \
+  && apt-get -qy install dos2unix python-dev libxml2-dev libxslt1-dev zlib1g-dev python-pip \
   && dos2unix /opt/docker-entrypoint.sh \
-  && chmod +x /opt/docker-entrypoint.sh
+  && chmod +x /opt/docker-entrypoint.sh \
+  && pip install fritzconnection
 
 EXPOSE 80
 CMD ["node serveronly"]
