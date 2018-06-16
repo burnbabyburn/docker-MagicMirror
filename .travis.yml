@@ -4,8 +4,8 @@ services:
   - docker
 language: bash
 script:
-  - docker build -t $DOCKER_USER/docker-magicmirror:latest .
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  - docker build -t $DOCKER_USER/docker-magicmirror:latest .
 after_success:
   - >
     if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
