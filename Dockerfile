@@ -4,7 +4,11 @@ FROM hypriot/rpi-node:latest
 
 WORKDIR /opt/magic_mirror
 
+<<<<<<< HEAD
 RUN git clone master https://github.com/MichMich/MagicMirror.git .
+=======
+RUN git clone https://github.com/MichMich/MagicMirror.git .
+>>>>>>> b80c671850b2660f035092eb2fa8fb531008666d
 
 RUN cp -R modules /opt/default_modules
 RUN cp -R config /opt/default_config
